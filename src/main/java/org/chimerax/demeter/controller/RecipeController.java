@@ -1,7 +1,7 @@
 package org.chimerax.demeter.controller;
 
 import lombok.AllArgsConstructor;
-import org.chimerax.commonservice.api.exception.NotFoundException;
+import org.chimerax.common.exception.NotFoundException;
 import org.chimerax.demeter.api.RecipeSearch;
 import org.chimerax.demeter.entity.Recipe;
 import org.chimerax.demeter.repository.RecipeSpecifications;

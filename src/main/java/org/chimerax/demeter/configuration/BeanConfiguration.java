@@ -16,7 +16,7 @@ import org.springframework.web.client.RestTemplate;
 public class BeanConfiguration {
 
     @Bean
-    public ObjectMapper objectMapper(){
+    public ObjectMapper objectMapper() {
         return new ObjectMapper().setSerializationInclusion(JsonInclude.Include.NON_NULL);
     }
 

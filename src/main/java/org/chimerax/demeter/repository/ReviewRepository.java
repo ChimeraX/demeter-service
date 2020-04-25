@@ -1,6 +1,6 @@
 package org.chimerax.demeter.repository;
 
-import org.chimerax.commonservice.api.repository.ChimeraXRepository;
+import org.chimerax.common.repository.ChimeraXRepository;
 import org.chimerax.demeter.entity.Review;
 import org.springframework.scheduling.annotation.Async;
 

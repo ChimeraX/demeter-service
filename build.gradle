@@ -58,7 +58,7 @@ dependencies {
     runtimeOnly 'org.postgresql:postgresql'
 
     compile 'com.h2database:h2'
-    implementation 'org.chimerax:common-service:1.0.2-RELEASE'
+    implementation 'org.chimerax:common-service:1.0.9-RELEASE'
 
     compile 'io.jsonwebtoken:jjwt:0.9.1'
     compile 'javax.xml.bind:jaxb-api:2.3.1'

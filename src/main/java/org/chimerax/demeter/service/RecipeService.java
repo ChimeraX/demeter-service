@@ -1,6 +1,6 @@
 package org.chimerax.demeter.service;
 
-import org.chimerax.commonservice.api.exception.NotFoundException;
+import org.chimerax.common.exception.NotFoundException;
 import org.chimerax.demeter.api.RecipeSearch;
 import org.chimerax.demeter.entity.Recipe;
 import org.springframework.data.domain.Page;
