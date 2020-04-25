@@ -6,9 +6,11 @@ import org.chimerax.demeter.api.RecipeMapper;
 import org.chimerax.demeter.api.RecipeSearch;
 import org.chimerax.demeter.entity.Recipe;
 import org.chimerax.demeter.repository.RecipeRepository;
+import org.chimerax.demeter.repository.ReviewRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -22,12 +24,22 @@ import java.util.Optional;
 @AllArgsConstructor
 public class RecipeServiceImpl implements RecipeService {
 
+    private ReviewRepository reviewRepository;
     private RecipeRepository recipeRepository;
     private RecipeMapper recipeMapper;
 
     @Override
     public Page<RecipeSearch> findAll(Specification<Recipe> spec, Pageable pageable) {
-        return recipeRepository.findAll(spec, pageable).map(recipeMapper::mapRecipeToSearch);
+        final String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        return recipeRepository.findAll(spec, pageable)
+                .map(recipe -> map(recipe, username));
+    }
+
+    private RecipeSearch map(final Recipe recipe, final String username) {
+        final RecipeSearch recipeSearch = recipeMapper.mapRecipeToSearch(recipe);
+        reviewRepository.countAllByRecipe_Id(recipe.getId()).thenAccept(recipeSearch::setFavorites);
+        reviewRepository.existsByRecipeIdAndUsername(recipe.getId(), username).thenAccept(recipeSearch::setFavorite);
+        return recipeSearch;
     }
 
     @Override

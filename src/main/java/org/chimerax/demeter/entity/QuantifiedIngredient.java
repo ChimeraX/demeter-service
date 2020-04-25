@@ -24,20 +24,15 @@ public class QuantifiedIngredient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "ingredient_id")
-    private long ingredientId;
-
-    @ManyToOne
-    @JoinColumn(name = "ingredient_id", insertable = false, updatable = false)
-    @EqualsAndHashCode.Exclude
-    @ToString.Exclude
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "ingredient_id")
     private Ingredient ingredient;
 
     @Column(name = "recipe_id")
     @JsonIgnore
     private long recipeId;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "recipe_id", insertable = false, updatable = false)
     @EqualsAndHashCode.Exclude
     @ToString.Exclude

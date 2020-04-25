@@ -25,11 +25,15 @@ public class RecipeSearch {
 
     private String name;
 
-    private String description;
-
     private String image;
 
     private int duration;
 
     private long categoryId;
+
+    private int calories;
+
+    private long favorites;
+
+    private boolean favorite;
 }

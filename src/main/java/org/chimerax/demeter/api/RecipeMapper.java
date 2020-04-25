@@ -15,9 +15,9 @@ public class RecipeMapper {
         return new RecipeSearch()
                 .setId(recipe.getId())
                 .setName(recipe.getName())
-                .setDescription(recipe.getDescription())
                 .setImage(recipe.getImage())
                 .setDuration(recipe.getDuration())
-                .setCategoryId(recipe.getCategoryId());
+                .setCategoryId(recipe.getCategoryId())
+                .setCalories(recipe.getCalories());
     }
 }

@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import lombok.experimental.Accessors;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -28,18 +30,16 @@ public class Recipe {
 
     private String name;
 
-    private String description;
-
     private String image;
 
     private int duration;
 
-    @OneToMany(mappedBy = "recipe", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "recipe", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private Set<QuantifiedIngredient> ingredients = new HashSet<>();
 
-    @OneToMany(mappedBy = "recipe", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "recipe", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private Set<RecipeStep> steps = new HashSet<>();
@@ -54,4 +54,6 @@ public class Recipe {
     @EqualsAndHashCode.Exclude
     @JsonIgnore
     private Category category;
+
+    private int calories;
 }

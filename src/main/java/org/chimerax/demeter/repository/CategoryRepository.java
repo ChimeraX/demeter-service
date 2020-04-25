@@ -9,4 +9,6 @@ import org.chimerax.demeter.entity.Category;
  * Time: 3:28 PM
  */
 public interface CategoryRepository extends ChimeraXRepository<Long, Category> {
+
+    Category findByName(final String name);
 }

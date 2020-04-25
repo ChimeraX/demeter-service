@@ -27,6 +27,7 @@ public class RecipeStep {
     @Column(name = "step_order")
     private int order;
 
+    @Column(length = 1000)
     private String description;
 
     @Column(name = "recipe_id")

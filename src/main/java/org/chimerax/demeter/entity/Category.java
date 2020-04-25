@@ -28,7 +28,6 @@ public class Category {
     private String image;
 
     @Column(name = "parent_id")
-    @JsonIgnore
     private Long parentId;
 
     @ManyToOne(fetch = FetchType.LAZY)

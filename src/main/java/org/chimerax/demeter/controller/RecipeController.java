@@ -47,13 +47,13 @@ public class RecipeController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> save(Recipe recipe) {
+    public ResponseEntity<Void> save(@RequestBody Recipe recipe) {
         recipeService.save(recipe);
         return ResponseEntity.ok().build();
     }
 
     @PutMapping
-    public ResponseEntity<Void> update(Recipe recipe) throws NotFoundException {
+    public ResponseEntity<Void> update(@RequestBody Recipe recipe) throws NotFoundException {
         recipeService.update(recipe);
         return ResponseEntity.ok().build();
     }
