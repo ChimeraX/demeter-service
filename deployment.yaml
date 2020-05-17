@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demeter-service
+  labels:
+    app: demeter-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demeter-service
+  template:
+    metadata:
+      labels:
+        app: demeter-service
+    spec:
+      containers:
+      - name: demeter-service-container
+        image: gcr.io/chimera-x/demeter-service
+        ports:
+        - containerPort: 8080
+        env:
+        - name: DATABASE_DRIVER
+          valueFrom:
+            configMapKeyRef:
+              name: config-demeter-service
+              key: DATABASE_DRIVER
+        - name: DATABASE_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: config-demeter-service
+              key: DATABASE_HOST
+        - name: DATABASE_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: config-demeter-service
+              key: DATABASE_PORT
+        - name: DATABASE_USERNAME
+          valueFrom:
+            configMapKeyRef:
+              name: config-demeter-service
+              key: DATABASE_USERNAME
+        - name: DATABASE_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              name: config-demeter-service
+              key: DATABASE_PASSWORD
+        - name: JWT_TOKEN_SECRET
+          valueFrom:
+            configMapKeyRef:
+              name: config-demeter-service
+              key: JWT_TOKEN_SECRET
+        - name: JWT_TOKEN_ISSUER
+          valueFrom:
+            configMapKeyRef:
+              name: config-demeter-service
+              key: JWT_TOKEN_ISSUER
+        - name: JWT_TOKEN_VALIDITY
+          valueFrom:
+            configMapKeyRef:
+              name: config-demeter-service
+              key: JWT_TOKEN_VALIDITY
+        - name: CHIMERA_X_OAUTH_CLIENT_ID
+          valueFrom:
+            configMapKeyRef:
+              name: config-demeter-service
+              key: CHIMERA_X_OAUTH_CLIENT_ID
+        - name: CHIMERA_X_OAUTH_CLIENT_SECRET
+          valueFrom:
+            configMapKeyRef:
+              name: config-demeter-service
+              key: CHIMERA_X_OAUTH_CLIENT_SECRET
+        - name: CHIMERA_X_OAUTH_SERVER_URL
+          valueFrom:
+            configMapKeyRef:
+              name: config-demeter-service
+              key: CHIMERA_X_OAUTH_SERVER_URL
