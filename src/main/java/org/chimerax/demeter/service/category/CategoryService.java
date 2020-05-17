@@ -5,6 +5,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 
+import java.util.List;
+import java.util.Set;
+
 /**
  * Author: Silviu-Mihnea Cucuiet
  * Date: 06-Apr-20
@@ -15,5 +18,7 @@ public interface CategoryService {
     Page<Category> findAll(final Pageable pageable);
 
     Page<Category> findAll(final Specification<Category> spec, final Pageable pageable);
+
+    Set<Category> findAllChildren(final long id);
 
 }
