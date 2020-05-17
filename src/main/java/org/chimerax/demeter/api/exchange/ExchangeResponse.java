@@ -1,8 +1,9 @@
-package org.chimerax.demeter.api.authorization;
+package org.chimerax.demeter.api.exchange;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 
 /**
  * Author: Silviu-Mihnea Cucuiet
@@ -12,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class LoginResponse {
-    private String d_token;
-    private String c_token;
+@Accessors(chain = true)
+public class ExchangeResponse {
+    private String code;
 }

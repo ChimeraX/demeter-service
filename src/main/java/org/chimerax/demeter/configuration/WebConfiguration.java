@@ -2,14 +2,11 @@ package org.chimerax.demeter.configuration;
 
 import lombok.AllArgsConstructor;
 import org.chimerax.common.security.jwt.JWTFilter;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  * Author: Silviu-Mihnea Cucuiet
@@ -30,24 +27,9 @@ public class WebConfiguration extends WebSecurityConfigurerAdapter {
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
                 .antMatchers("/v2/api-docs", "/configuration/**", "/swagger*/**", "/webjars/**").permitAll()
-                .antMatchers("/login").permitAll()
+                .antMatchers("/authenticate").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-    }
-
-    @Bean
-    public WebMvcConfigurer corsConfigurer() {
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**")
-                        .allowedOrigins("*")
-                        .allowedMethods("GET", "POST","PUT", "DELETE", "PATCH")
-                        .allowedHeaders("Authorization", "Content-type")
-                        .allowCredentials(false)
-                        .maxAge(3600);
-            }
-        };
     }
 }

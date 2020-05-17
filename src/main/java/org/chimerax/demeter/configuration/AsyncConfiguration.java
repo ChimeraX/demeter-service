@@ -9,7 +9,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
  * Time: 3:22 AM
  */
 
-@Configuration
 @EnableAsync
+@Configuration
 public class AsyncConfiguration {
 }

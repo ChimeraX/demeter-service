@@ -1,4 +1,4 @@
-package org.chimerax.demeter.service;
+package org.chimerax.demeter.service.recipe;
 
 import lombok.AllArgsConstructor;
 import org.chimerax.common.exception.NotFoundException;

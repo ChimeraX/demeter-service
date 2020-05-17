@@ -1,6 +1,5 @@
 package org.chimerax.demeter.service;
 
-import io.swagger.models.auth.In;
 import lombok.AllArgsConstructor;
 import lombok.val;
 import org.chimerax.demeter.entity.Ingredient;
@@ -12,12 +11,10 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Author: Silviu-Mihnea Cucuiet

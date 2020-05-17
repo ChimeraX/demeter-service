@@ -1,4 +1,4 @@
-package org.chimerax.demeter.service;
+package org.chimerax.demeter.service.category;
 
 import org.chimerax.demeter.entity.Category;
 import org.springframework.data.domain.Page;

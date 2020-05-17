@@ -5,23 +5,17 @@ import lombok.experimental.Accessors;
 
 /**
  * Author: Silviu-Mihnea Cucuiet
- * Date: 23-Apr-20
- * Time: 10:24 PM
+ * Date: 26-Apr-20
+ * Time: 3:36 PM
  */
 
 @Data
 @Accessors(chain = true)
-public class User {
-
-    private long id;
-
-    private String username;
+public class UserInfoDTO {
 
     private String firstName;
 
     private String lastName;
-
-    private String password;
 
     private String email;
 

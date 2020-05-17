@@ -3,8 +3,6 @@ package org.chimerax.demeter.repository;
 import org.chimerax.common.repository.ChimeraXRepository;
 import org.chimerax.demeter.entity.QuantifiedIngredient;
 
-import java.util.List;
-
 /**
  * Author: Silviu-Mihnea Cucuiet
  * Date: 24-Apr-20

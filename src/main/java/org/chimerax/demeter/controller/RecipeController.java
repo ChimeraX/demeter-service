@@ -5,7 +5,7 @@ import org.chimerax.common.exception.NotFoundException;
 import org.chimerax.demeter.api.RecipeSearch;
 import org.chimerax.demeter.entity.Recipe;
 import org.chimerax.demeter.repository.RecipeSpecifications;
-import org.chimerax.demeter.service.RecipeService;
+import org.chimerax.demeter.service.recipe.RecipeService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;

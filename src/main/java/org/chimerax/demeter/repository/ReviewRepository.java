@@ -5,7 +5,6 @@ import org.chimerax.demeter.entity.Review;
 import org.springframework.scheduling.annotation.Async;
 
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Future;
 
 /**
  * Author: Silviu-Mihnea Cucuiet

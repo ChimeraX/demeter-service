@@ -3,7 +3,7 @@ package org.chimerax.demeter.controller;
 import lombok.AllArgsConstructor;
 import org.chimerax.demeter.entity.Category;
 import org.chimerax.demeter.repository.CategorySpecifications;
-import org.chimerax.demeter.service.CategoryService;
+import org.chimerax.demeter.service.category.CategoryService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;

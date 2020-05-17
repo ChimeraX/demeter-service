@@ -1,10 +1,8 @@
-package org.chimerax.demeter.service;
+package org.chimerax.demeter.service.oauth;
 
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.chimerax.demeter.api.authorization.AuthorizationRequest;
 import org.chimerax.demeter.api.authorization.AuthorizationResponse;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -14,31 +12,27 @@ import org.springframework.web.client.RestTemplate;
  * Time: 2:08 AM
  */
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class LoginService {
 
-    private final RestTemplate restTemplate;
+    private RestTemplate restTemplate;
 
-    @Value("${chimerax.oauth.client.clientId}")
-    private String clientId;
-
-    @Value("${chimerax.oauth.client.secret}")
-    private String clientSecret;
-
-    @Value("${chimerax.oauth.token.url}")
-    private String tokenURL;
+    private OAuthDetails oAuthDetails;
 
     public String login(final String code) {
         final AuthorizationRequest request = new AuthorizationRequest()
-                .setClientId(clientId)
-                .setSecret(clientSecret)
+                .setClientId(oAuthDetails.getClientId())
+                .setSecret(oAuthDetails.getClientSecret())
                 .setCode(code);
+
+        System.out.println(oAuthDetails.getTokenURL());
         final AuthorizationResponse response =
-                restTemplate.postForObject(tokenURL, request, AuthorizationResponse.class);
+                restTemplate.postForObject(oAuthDetails.getTokenURL(), request, AuthorizationResponse.class);
 
         if (response == null) {
             throw new RuntimeException();
         }
+
         return response.getToken();
     }
 }

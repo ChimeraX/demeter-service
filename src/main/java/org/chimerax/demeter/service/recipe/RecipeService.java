@@ -1,4 +1,4 @@
-package org.chimerax.demeter.service;
+package org.chimerax.demeter.service.recipe;
 
 import org.chimerax.common.exception.NotFoundException;
 import org.chimerax.demeter.api.RecipeSearch;

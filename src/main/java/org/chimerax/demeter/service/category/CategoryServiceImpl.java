@@ -1,4 +1,4 @@
-package org.chimerax.demeter.service;
+package org.chimerax.demeter.service.category;
 
 import lombok.AllArgsConstructor;
 import org.chimerax.demeter.entity.Category;
