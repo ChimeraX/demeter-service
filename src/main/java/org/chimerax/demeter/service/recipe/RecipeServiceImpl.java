@@ -40,7 +40,8 @@ public class RecipeServiceImpl implements RecipeService {
     private RecipeSearch map(final Recipe recipe, final String username) {
         final RecipeSearch recipeSearch = recipeMapper.mapRecipeToSearch(recipe);
         reviewRepository.countAllByRecipe_Id(recipe.getId()).thenAccept(recipeSearch::setFavorites);
-        reviewRepository.existsByRecipeIdAndUsername(recipe.getId(), username).thenAccept(recipeSearch::setFavorite);
+        reviewRepository.existsByRecipeIdAndUsernameAndFavorite(recipe.getId(), username, true)
+                .thenAccept(recipeSearch::setFavorite);
         return recipeSearch;
     }
 

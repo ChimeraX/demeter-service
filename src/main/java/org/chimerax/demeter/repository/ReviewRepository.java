@@ -15,7 +15,9 @@ import java.util.concurrent.CompletableFuture;
 public interface ReviewRepository extends ChimeraXRepository<Long, Review> {
 
     @Async
-    CompletableFuture<Boolean> existsByRecipeIdAndUsername(final long recipeId, final String username);
+    CompletableFuture<Boolean> existsByRecipeIdAndUsernameAndFavorite(final long recipeId,
+                                                                      final String username,
+                                                                      final boolean favorite);
 
     Optional<Review> findByRecipeIdAndUsername(final long recipeId, final String username);
 
