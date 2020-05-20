@@ -31,4 +31,8 @@ public class Review {
     private String username;
 
     private boolean favorite;
+
+    public void toggleFavorite() {
+        favorite = !favorite;
+    }
 }

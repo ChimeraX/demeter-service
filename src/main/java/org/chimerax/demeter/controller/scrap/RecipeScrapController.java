@@ -1,9 +1,8 @@
-package org.chimerax.demeter.controller;
+package org.chimerax.demeter.controller.scrap;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.chimerax.demeter.api.RecipeSearch;
-import org.chimerax.demeter.service.WebScrapper;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

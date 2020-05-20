@@ -1,7 +1,10 @@
-package org.chimerax.demeter.service;
+package org.chimerax.demeter.controller.scrap;
 
 import lombok.AllArgsConstructor;
 import lombok.val;
+import org.chimerax.demeter.controller.scrap.IngredientRepository;
+import org.chimerax.demeter.controller.scrap.QuantifiedIngredientRepository;
+import org.chimerax.demeter.controller.scrap.RecipeStepRepository;
 import org.chimerax.demeter.entity.Ingredient;
 import org.chimerax.demeter.entity.QuantifiedIngredient;
 import org.chimerax.demeter.entity.Recipe;

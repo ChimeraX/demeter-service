@@ -1,4 +1,4 @@
-package org.chimerax.demeter.repository;
+package org.chimerax.demeter.controller.scrap;
 
 import org.chimerax.common.repository.ChimeraXRepository;
 import org.chimerax.demeter.entity.QuantifiedIngredient;
@@ -9,6 +9,4 @@ import org.chimerax.demeter.entity.QuantifiedIngredient;
  * Time: 12:45 AM
  */
 public interface QuantifiedIngredientRepository extends ChimeraXRepository<Long, QuantifiedIngredient> {
-
-    long countAllByIngredient_Id(long ingredient_id);
 }

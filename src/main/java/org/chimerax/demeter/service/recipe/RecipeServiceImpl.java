@@ -70,7 +70,7 @@ public class RecipeServiceImpl implements RecipeService {
         final String username = SecurityContextHolder.getContext().getAuthentication().getName();
         val optional = reviewRepository.findByRecipeIdAndUsername(id, username);
         final Review review = optional.orElse(new Review().setRecipeId(id).setUsername(username));
-        review.setFavorite(false);
+        review.toggleFavorite();
         reviewRepository.save(review);
     }
 

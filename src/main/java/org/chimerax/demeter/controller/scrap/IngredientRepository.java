@@ -1,4 +1,4 @@
-package org.chimerax.demeter.repository;
+package org.chimerax.demeter.controller.scrap;
 
 import org.chimerax.common.repository.ChimeraXRepository;
 import org.chimerax.demeter.entity.Ingredient;

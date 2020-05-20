@@ -23,5 +23,6 @@ public class User {
     @Column(unique = true, nullable = false, updatable = false)
     private String email;
 
+    @Column(unique = true, nullable = false, updatable = false)
     private String code;
 }
