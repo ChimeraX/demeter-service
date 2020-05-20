@@ -19,14 +19,16 @@ public interface RecipeService {
 
     Page<RecipeSearch> findAll(final Specification<Recipe> spec, final Pageable pageable);
 
-    Optional<Recipe> findById(final Long id);
+    Optional<Recipe> findById(final long id);
 
-    boolean existsById(final Long id);
+    boolean existsById(final long id);
 
     void save(final Recipe recipe);
 
     void update(final Recipe recipe) throws NotFoundException;
 
-    void deleteById(final Long id) throws NotFoundException;
+    void toggleFavorite(final long id);
+
+    void deleteById(final long id) throws NotFoundException;
 
 }

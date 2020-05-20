@@ -4,6 +4,7 @@ import org.chimerax.common.repository.ChimeraXRepository;
 import org.chimerax.demeter.entity.Review;
 import org.springframework.scheduling.annotation.Async;
 
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 /**
@@ -15,6 +16,8 @@ public interface ReviewRepository extends ChimeraXRepository<Long, Review> {
 
     @Async
     CompletableFuture<Boolean> existsByRecipeIdAndUsername(final long recipeId, final String username);
+
+    Optional<Review> findByRecipeIdAndUsername(final long recipeId, final String username);
 
     @Async
     CompletableFuture<Long> countAllByRecipe_Id(final long recipeId);

@@ -58,6 +58,12 @@ public class RecipeController {
         return ResponseEntity.ok().build();
     }
 
+    @PutMapping("/{id}/favorite")
+    public ResponseEntity<Void> favorite(@PathVariable final long id) throws NotFoundException {
+        recipeService.toggleFavorite(id);
+        return ResponseEntity.ok().build();
+    }
+
     @DeleteMapping("/{id:[0-9]+}")
     public ResponseEntity<Void> deleteById(@PathVariable final long id) throws NotFoundException {
         recipeService.deleteById(id);

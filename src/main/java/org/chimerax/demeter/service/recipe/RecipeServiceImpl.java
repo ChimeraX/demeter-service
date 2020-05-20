@@ -1,10 +1,12 @@
 package org.chimerax.demeter.service.recipe;
 
 import lombok.AllArgsConstructor;
+import lombok.val;
 import org.chimerax.common.exception.NotFoundException;
 import org.chimerax.demeter.api.RecipeMapper;
 import org.chimerax.demeter.api.RecipeSearch;
 import org.chimerax.demeter.entity.Recipe;
+import org.chimerax.demeter.entity.Review;
 import org.chimerax.demeter.repository.RecipeRepository;
 import org.chimerax.demeter.repository.ReviewRepository;
 import org.springframework.data.domain.Page;
@@ -43,12 +45,12 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
-    public Optional<Recipe> findById(Long id) {
+    public Optional<Recipe> findById(final long id) {
         return recipeRepository.findById(id);
     }
 
     @Override
-    public boolean existsById(Long id) {
+    public boolean existsById(final long id) {
         return recipeRepository.existsById(id);
     }
 
@@ -63,7 +65,16 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
-    public void deleteById(final Long id) throws NotFoundException {
+    public void toggleFavorite(final long id) {
+        final String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        val optional = reviewRepository.findByRecipeIdAndUsername(id, username);
+        final Review review = optional.orElse(new Review().setRecipeId(id).setUsername(username));
+        review.setFavorite(false);
+        reviewRepository.save(review);
+    }
+
+    @Override
+    public void deleteById(final long id) throws NotFoundException {
         recipeRepository.deleteById(id);
     }
 }
