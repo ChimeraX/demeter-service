@@ -20,8 +20,4 @@ public class UserInfoDTO {
     private String email;
 
     private String profilePicture;
-
-    private String country;
-
-    private String phoneNumber;
 }

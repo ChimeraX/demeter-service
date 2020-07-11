@@ -21,8 +21,6 @@ public interface RecipeService {
 
     Optional<Recipe> findById(final long id);
 
-    boolean existsById(final long id);
-
     void save(final Recipe recipe);
 
     void update(final Recipe recipe) throws NotFoundException;

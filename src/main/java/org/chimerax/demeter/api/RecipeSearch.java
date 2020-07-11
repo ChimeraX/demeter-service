@@ -26,4 +26,6 @@ public class RecipeSearch {
     private long favorites;
 
     private boolean favorite;
+
+    private UserInfoDTO creator;
 }

@@ -9,13 +9,18 @@ import org.chimerax.demeter.entity.Recipe;
 import org.chimerax.demeter.entity.Review;
 import org.chimerax.demeter.repository.RecipeRepository;
 import org.chimerax.demeter.repository.ReviewRepository;
+import org.chimerax.demeter.service.oauth.OAuthService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * Author: Silviu-Mihnea Cucuiet
@@ -28,31 +33,30 @@ public class RecipeServiceImpl implements RecipeService {
 
     private ReviewRepository reviewRepository;
     private RecipeRepository recipeRepository;
+    private OAuthService oAuthService;
     private RecipeMapper recipeMapper;
 
     @Override
     public Page<RecipeSearch> findAll(Specification<Recipe> spec, Pageable pageable) {
         final String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        return recipeRepository.findAll(spec, pageable)
-                .map(recipe -> map(recipe, username));
+        val recipes = recipeRepository.findAll(spec, pageable);
+        val users = recipes.getContent().stream().map(Recipe::getCreator).collect(Collectors.toSet());
+        // oAuthService.load(users);
+        return recipes.map(recipe -> map(recipe, username));
     }
 
     private RecipeSearch map(final Recipe recipe, final String username) {
         final RecipeSearch recipeSearch = recipeMapper.mapRecipeToSearch(recipe);
-        reviewRepository.countAllByRecipe_Id(recipe.getId()).thenAccept(recipeSearch::setFavorites);
-        reviewRepository.existsByRecipeIdAndUsernameAndFavorite(recipe.getId(), username, true)
+        reviewRepository.countAllByRecipeId(recipe.getId()).thenAccept(recipeSearch::setFavorites);
+        reviewRepository.existsByRecipeIdAndUsername(recipe.getId(), username)
                 .thenAccept(recipeSearch::setFavorite);
+        // recipeSearch.setCreator(oAuthService.getForUsername(username));
         return recipeSearch;
     }
 
     @Override
     public Optional<Recipe> findById(final long id) {
         return recipeRepository.findById(id);
-    }
-
-    @Override
-    public boolean existsById(final long id) {
-        return recipeRepository.existsById(id);
     }
 
     @Override

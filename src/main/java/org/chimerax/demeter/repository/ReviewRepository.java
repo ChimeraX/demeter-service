@@ -15,6 +15,11 @@ import java.util.concurrent.CompletableFuture;
 public interface ReviewRepository extends ChimeraXRepository<Long, Review> {
 
     @Async
+    default CompletableFuture<Boolean> existsByRecipeIdAndUsername(final long recipeId, final String username) {
+        return existsByRecipeIdAndUsernameAndFavorite(recipeId, username, true);
+    }
+
+    @Async
     CompletableFuture<Boolean> existsByRecipeIdAndUsernameAndFavorite(final long recipeId,
                                                                       final String username,
                                                                       final boolean favorite);
@@ -22,5 +27,11 @@ public interface ReviewRepository extends ChimeraXRepository<Long, Review> {
     Optional<Review> findByRecipeIdAndUsername(final long recipeId, final String username);
 
     @Async
-    CompletableFuture<Long> countAllByRecipe_Id(final long recipeId);
+    default CompletableFuture<Long> countAllByRecipeId(final long recipeId) {
+        return countAllByRecipeIdAndFavorite(recipeId, true);
+    }
+
+    @Async
+    CompletableFuture<Long> countAllByRecipeIdAndFavorite(final long recipeId,
+                                                          final boolean favorite);
 }

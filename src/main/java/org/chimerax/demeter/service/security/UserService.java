@@ -10,4 +10,5 @@ package org.chimerax.demeter.service.security;
 public interface UserService {
 
     String generate(final String code, final String c_token);
+
 }

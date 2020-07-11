@@ -13,6 +13,10 @@ public interface OAuthDetails {
 
     String getOAuthURL();
 
+    default String getUserInfoURL() {
+        return getOAuthURL() + "/userinfo";
+    }
+
     default String getTokenURL() {
         return getOAuthURL() + "/token";
     }

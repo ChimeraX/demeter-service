@@ -54,4 +54,6 @@ public class Recipe {
     private Category category;
 
     private int calories;
+
+    private String creator;
 }
